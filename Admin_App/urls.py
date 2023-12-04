@@ -1,0 +1,32 @@
+from django.urls import path
+from. import views
+
+urlpatterns = [
+    path('adminlogin',views.adminlogin,name='adminlogin'),
+    path('adlogin',views.adlogin,name='adlogin'),
+    path('adlogout',views.adlogout,name='adlogout'),
+    path('adminview',views.adminview,name='adminview'),
+    path('addlocation',views.addlocation,name='addlocation'),
+    path('regloc',views.regloc,name='regloc'),
+    path('addturf',views.addturf,name='addturf'),
+    path('viewlocations',views.viewlocations,name='viewlocations'),
+    path('editloc/<int:id>/',views.editloc,name='editloc'),
+    path('updateloc/<int:id>/',views.updateloc,name='updateloc'),
+    path('deleteloc/<int:id>/',views.deleteloc,name='deleteloc'),
+    path('regturf',views.regturf,name='regturf'),
+    path('viewturfs',views.viewturfs,name='viewturfs'),
+    path('editturf/<int:id>/',views.editturf,name='editturf'),
+    path('updateturf/<int:id>/',views.updateturf,name='updateturf'),
+    path('deleteturf/<int:id>/',views.deleteturf,name='deleteturf'),
+    path('viewuser',views.viewuser,name='viewuser'),
+    path('deleteuser/<int:id>/',views.deleteuser,name='deleteuser'),
+    path('viewcontact',views.viewcontact,name='viewcontact'),
+    path('deletecontact/<int:id>/',views.deletecontact,name='deletecontact'),
+    path('deleteall/<str:id>/',views.deleteall,name='deleteall'),
+    path('approve_mreq/<int:id>/',views.approve_mreq,name='approve_mreq'),
+    path('decline_mreq/<int:id>/',views.decline_mreq,name='decline_mreq'),
+    path('viewmrequest',views.viewmrequest,name='viewmrequest'),
+    path('viewamrequest',views.viewamrequest,name='viewamrequest'),
+    path('viewdmrequest',views.viewdmrequest,name='viewdmrequest'),
+    path('viewbooking',views.viewbooking,name='viewbooking'),
+]

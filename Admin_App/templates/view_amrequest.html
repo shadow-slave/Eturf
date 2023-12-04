@@ -1,0 +1,97 @@
+{% extends 'admin_view.html' %}
+{% load static %}
+{% block link1 %}
+<li class="menu-item ">
+  <a href="{% url 'adminview' %}" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-home-circle"></i>
+    <div data-i18n="Analytics">Dashboard</div>
+  </a>
+</li>
+{% endblock %}
+{% block link4 %}
+<li class="menu-item active open">
+  <a href="javascript:void(0);" class="menu-link menu-toggle">
+    <i class="menu-icon tf-icons bx bx-table"></i>
+    <div data-i18n="Layouts">Tables</div>
+  </a>
+  {% endblock %}
+  {% block link5 %}
+  <ul class="menu-sub ">
+    <li class="menu-item ">
+      <a href="{% url 'viewlocations' %}" class="menu-link">
+        <div data-i18n="Without menu">View Location</div>
+      </a>
+    </li>
+    <li class="menu-item">
+      <a href="{% url 'viewturfs' %}" class="menu-link">
+        <div data-i18n="Without navbar">View Turfs</div>
+      </a>
+    </li>
+    <li class="menu-item">
+      <a href="{% url 'viewuser' %}" class="menu-link">
+        <div data-i18n="Without navbar">View Users</div>
+      </a>
+    </li>
+    <li class="menu-item">
+      <a href="{% url 'viewcontact' %}" class="menu-link">
+        <div data-i18n="Without navbar">View Messages</div>
+      </a>
+    </li>
+    <li class="menu-item ">
+        <a href="{% url 'viewmrequest' %}" class="menu-link">
+          <div data-i18n="Without navbar">Manager Requests</div>
+        </a>
+      </li>
+      <li class="menu-item active">
+        <a href="{% url 'viewamrequest' %}" class="menu-link">
+          <div data-i18n="Without navbar">Approved Managers</div>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="{% url 'viewdmrequest' %}" class="menu-link">
+          <div data-i18n="Without navbar">Declined Managers</div>
+        </a>
+      </li>
+  </ul>
+</li>
+</ul>
+{% endblock %} 
+{% block content %}
+    <div class="col-lg-10 grid-margin stretch-card" style="margin-left: 20px;margin-right: 20px;margin-top: 40px;">
+        <div class="card" >
+            <div class="card-body">
+                <h4 class="card-title">Table</h4>
+                </p>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Manager Id</th>
+                        <th>Manager Name</th>
+                        <th>Manager Email</th>
+                        <th>Manager Password</th>
+                        <th>Manager Location</th>
+                        <th>Manager Phno.</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in data %}
+                    <tr>
+                        <td>{{i.id}}</td>
+                        <td>{{i.mname}}</td>
+                        <td>{{i.memail}}</td>
+                        <td>{{i.mpass}}</td>
+                        <td>{{i.mloc}}</td>
+                        <td>{{i.mphone}}</td>
+                        <td><p style="color: green;">Approved
+                        </p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>  
+</div>
+{% endblock %}  

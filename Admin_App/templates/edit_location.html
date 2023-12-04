@@ -1,0 +1,70 @@
+{% extends 'admin_view.html' %}
+{% load static %}
+{% block link1 %}
+<li class="menu-item ">
+  <a href="{% url 'adminview' %}" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-home-circle"></i>
+    <div data-i18n="Analytics">Dashboard</div>
+  </a>
+</li>
+{% endblock %}
+<!-- Add Items -->
+{% block link2 %}
+<li class="menu-item active open">
+  <a href="javascript:void(0);" class="menu-link menu-toggle">
+    <i class="menu-icon tf-icons bx bx-layout"></i>
+    <div data-i18n="Layouts">ADD</div>
+  </a>
+  {% endblock %}
+  {% block link3 %}
+  <li class="menu-item active ">
+    <a href="{% url 'addlocation' %}" class="menu-link active">
+      <div data-i18n="Without menu">Add Location</div>
+    </a>
+  </li>
+  <li class="menu-item">
+    <a href="{% url 'addturf' %}" class="menu-link">
+      <div data-i18n="Without navbar">Add Turf</div>
+    </a>
+  </li>
+</ul>
+</li>
+{% endblock %}
+{% block content %}
+
+<div class="col-xxl" style="margin-top: 50px;margin-left: 22px;margin-right: 22px;">
+    <div class="card mb-4">
+      <div class="card-header d-flex align-items-center justify-content-between">
+        <h5 class="mb-0">Edit Location</h5>
+      </div>
+      <div class="card-body">
+        {% for i in data %}
+        <form action="{% url 'updateloc' id=i.id %}" method="post" id="myForm" enctype="multipart/form-data">
+        {% csrf_token %}
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-default-location">Location</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="loc" value="{{i.loc}}" id="basic-default-location">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-default-location">Location Image</label>
+            <div class="col-sm-10">
+                <img src="{{i.locimage.url}}" height="100px">
+              <div class="input-group">
+                <input type="file" class="form-control" name="locimage" id="inputGroupFile01">
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-end">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">Send</button>
+            </div>
+          </div>
+        </form>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+{% endblock%}

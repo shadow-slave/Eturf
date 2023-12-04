@@ -1,0 +1,161 @@
+{% extends 'admin_view.html' %}
+{% load static %}
+{% block link1 %}
+<li class="menu-item ">
+  <a href="{% url 'adminview' %}" class="menu-link">
+    <i class="menu-icon tf-icons bx bx-home-circle"></i>
+    <div data-i18n="Analytics">Dashboard</div>
+  </a>
+</li>
+{% endblock %}
+<!-- Add Items -->
+{% block link2 %}
+<li class="menu-item active open ">
+  <a href="javascript:void(0);" class="menu-link menu-toggle">
+    <i class="menu-icon tf-icons bx bx-layout"></i>
+    <div data-i18n="Layouts">ADD</div>
+  </a>
+  {% endblock %}
+  {% block link3 %}
+  <li class="menu-item  ">
+    <a href="{% url 'addlocation' %}" class="menu-link active">
+      <div data-i18n="Without menu">Add Location</div>
+    </a>
+  </li>
+  <li class="menu-item active">
+    <a href="{% url 'addturf' %}" class="menu-link">
+      <div data-i18n="Without navbar">Add Turf</div>
+    </a>
+  </li>
+</ul>
+</li>
+{% endblock %}
+{% block content %}
+
+<div class="col-xxl" style="margin-top: 50px;margin-left: 22px;margin-right: 22px;">
+    <div class="card mb-4">
+      <div class="card-header d-flex align-items-center justify-content-between">
+        <h5 class="mb-0">Turf Details</h5>
+      </div>
+      <div class="card-body">
+        <form action="{% url 'regturf' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label"  for="basic-default-name">Turf Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="tname" id="basic-default-name" placeholder="Enter turf name here">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-default-price">Turf Price</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" name="tprice" id="basic-default-price" placeholder="Enter Turf Price">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-default-price">Turf Start Time</label>
+            <div class="col-sm-10">
+              <input type="time" class="form-control" name="tstime" id="basic-default-price" placeholder="Enter Turf Timings">
+            </div>
+            <label class="col-sm-2 col-form-label" for="basic-default-price">Turf End Time</label>
+            <div class="col-sm-10">
+              <input type="time" class="form-control" name="tetime" id="basic-default-price" placeholder="Enter Turf Timings">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-default-location">Location</label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                    <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                    <select class="form-select" name="tloc" id="inputGroupSelect01">
+                        {% for i in locations %}
+                      <option selected="" value="{{i.loc}}" >{{i.loc}}</option>
+                      {% endfor %}
+                    </select>
+                </div>
+            </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-default-location">Manager</label>
+            <div class="col-sm-10">
+                <div class="input-group">
+                    <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                    <select class="form-select" name="tmanager" id="inputGroupSelect01">
+                        {% for i in manager %}
+                      <option selected="" value="{{i.id}}" >{{i.mname}}/{{i.id}}/{{i.mloc}}</option>
+                      {% endfor %}
+                    </select>
+                </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-default-location">Area</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" name="tarea" value="Kochi" id="html5-url-input">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-default-location">Map Link</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="url" name="taddress" value="https://googlemap.com" id="html5-url-input">
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-default-location">Features</label>
+            <div class="col-sm-10">
+                <div class="form-check mt-3"><br>
+                    <input class="form-check-input" type="checkbox" name="class" {% if 'parking' in i.features %} checked {% endif %} value="parking" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1"> Parking </label>
+                  </div>
+                <div class="form-check mt-3">
+                    <input class="form-check-input" type="checkbox" name="class" {% if 'restroom' in i.features %} checked {% endif %} value="restroom" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1"> Restroom </label>
+                  </div>
+                <div class="form-check mt-3">
+                    <input class="form-check-input" type="checkbox" name="class" {% if 'FirstAid' in i.features %} checked {% endif %} value="FirstAid" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1"> First Aid </label>
+                  </div>
+                <div class="form-check mt-3">
+                    <input class="form-check-input" type="checkbox" name="class" {% if 'Shower' in i.features %} checked {% endif %} value="Shower" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">Shower</label>
+                  </div>
+                <div class="form-check mt-3">
+                    <input class="form-check-input" type="checkbox" name="class" {% if 'Toilet' in i.features %} checked {% endif %} value="Toilet" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1"> Toilet </label>
+                  </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-default-location">Turf Image 1</label>
+            <div class="col-sm-10">
+              <div class="input-group">
+                <input type="file" class="form-control" name="timage1" id="inputGroupFile01" required>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-default-location">Turf Image 2</label>
+            <div class="col-sm-10">
+              <div class="input-group">
+                <input type="file" class="form-control" name="timage2" id="inputGroupFile02" required>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label class="col-sm-2 col-form-label" for="basic-default-location">Turf Image 3</label>
+            <div class="col-sm-10">
+              <div class="input-group">
+                <input type="file" class="form-control" name="timage3" id="inputGroupFile03" required>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-end">
+            <div class="col-sm-10">
+              <button type="submit" class="btn btn-primary">Send</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{% endblock%}
