@@ -1,0 +1,50 @@
+{% extends 'manager_view.html' %}
+{% load static %}
+{% block content %}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card" >
+                    <div class="card-body">
+                        <h4 class="card-title">Table</h4>
+                        </p>
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>User Id</th>
+                                <th>User Name </th>
+                                <th>Turf Name</th>
+                                <th>Booking ID</th>
+                                <th>Booking Date</th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                                <th>Status</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for i in data %}
+                            <tr>
+                                <td>{{i.userid.id}}</td>
+                                <td>{{i.userid.name}}</td>
+                                <td>{{i.turfid.tname}}</td>
+                                <td>{{i.id}}</td>
+                                <td>{{i.bookingdate}}</td>
+                                <td>{{i.bstime}}</td>
+                                <td>{{i.betime}}</td>
+                                <td>
+                                    <a href="{% url 'declinebooking' id=i.id %}"><button class="btn btn-danger" >Decline</button></a>
+                                    <a href="{% url 'approvebooking' id=i.id %}"><button class="btn btn-success" >Approve</button></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+{% endblock %}  

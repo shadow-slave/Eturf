@@ -1,0 +1,55 @@
+{% extends 'manager_view.html' %}
+{% load static %}
+{% block content %}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-24 grid-margin stretch-card">
+                <div class="card" >
+                    <div class="card-body">
+                        <h4 class="card-title">Turfs</h4>
+                        </p>
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>Turf Image 1</th>
+                                <th>Turf Image 2</th>
+                                <th>Turf Image 3</th>
+                                <th>Name </th>
+                                <th>Price </th>
+                                <th>Start Time</th>
+                                <th>End Time</th>
+                                <th>Turf Manager</th>
+                                <th>Location</th>
+                                <th>Area</th>
+                                <th>Address</th>
+                                <th>Features</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for i in data %}
+                            <tr>
+                                <td><img src="{{i.timage1.url}}" ></td>
+                                <td><img src="{{i.timage2.url}}" ></td>
+                                <td><img src="{{i.timage3.url}}" ></td>
+                                <td>{{i.tname}}</td>
+                                <td>{{i.tprice}}</td>
+                                <td>{{i.tstime}}</td>
+                                <td>{{i.tetime}}</td>
+                                <td>{{i.tmanagerid.mname}}</td>
+                                <td>{{i.tloc}}</td>
+                                <td>{{i.tarea}}</td>
+                                <td>{{i.taddress}}</td>
+                                <td>{{i.Features}}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+{% endblock %}  
