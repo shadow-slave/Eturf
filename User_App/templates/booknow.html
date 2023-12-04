@@ -1,0 +1,159 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block header %}
+  <header id="header" style="background-color: black;">
+    <div class="container-fluid">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="{% url 'uindex' %}" class="scrollto">UrTurf </a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#intro"><img src="img/logo.png' %}" alt="" title="" /></a>-->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li ><a href="{% url 'uindex' %}">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="{% url 'usearch' %}">Book Now</a></li>
+          <li class="menu-has-children"><a href="" class="sf-with-ul">Locations</a>
+            <ul style="display: none;">
+                {% for i in locations %}
+              <li><a href="{% url 'locationresult' id=i.loc %}">{{i.loc}}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+          <li class="menu-has-children"><a href="" class="sf-with-ul">Account</a>
+            <ul style="display: none;">
+              {% if 'u_id' in request.session %}
+              <li><a href="">Hi, {{request.session.u_name}}</a></li>
+              <li><a href="{% url 'bookinghistory' %}">Booking History</a></li>
+              <li><a href="{% url 'ulogout' %}">Logout</a></li>
+              {% else %}
+              <li><a href="{% url 'ulogin' %}">Login</a></li>
+              <li><a href="{% url 'uregister' %}">Register</a></li>
+              {% endif %}
+            </ul>
+          </li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+  {% endblock %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'singleendcss/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'singleendcss/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'singleendcss/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'singleendcss/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'singleendcss/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'singleendcss/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'singleendcss/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'singleendcss/style.css' %}" type="text/css">
+    <style>
+    .icon-shape {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.icon-sm {
+    width: 2rem;
+    height: 2rem;
+    
+}
+    </style>
+</head>
+{% for i in data %}
+<form action="{% url 'regbooking' id=i.id %}" method="post" class="checkout__form" style="margin-top: 100px;">
+  {% csrf_token %}  
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
+            <div class="checkout__order">
+                <h5>{{i.tname}}</h5>
+                <div class="checkout__order__product">{{msg}}
+                    <ul>
+                        <li><input type="hidden" value="{{i.tmanagerid.id}}" name="mid">
+                            <span class="top__text">{{i.tloc}}</span>
+                        </li>
+                        <li>
+                            <span class="top__text">Booking Date</span>
+                            <span class="top__text__right"><input type="date" name="bookingdate" id="datepicker"  > </span>
+                        </li>
+                        <li>
+                            <span class="top__text">Start Time</span><input type="hidden" value="{{s_time}}" id="s_ttime">
+                            <input class="top__text__right" type="time" name="bstime" id="timestart" >
+                        </li>
+                        <li>
+                            <span class="top__text">End Time</span>
+                            <input class="top__text__right" type="time" name="betime" id="timeend">
+                        </li>
+                        <li ><span class="top__text">Price/Hr</span> <span>₹{{i.tprice}}</span></li><input type="hidden" name="bprice" id="price" value="{{i.tprice}}">
+                        <li >
+                          <span class="top__text">Duration(Hr)</span>
+                          <input name="duration" type="number"  step="1" min="1" max="2" value="1" id="quantity" class="top__text__right">
+                        </li>
+                        
+                    </ul>
+                </div>
+                <div class="checkout__order__total">
+                    <ul>
+                        <li>Total <span>₹<input type="text" name="btotal" id="total" value="{{i.tprice}}"></span></li>
+                    </ul>
+                </div>
+                <button type="submit" class="site-btn">Place oder</button>
+            </div>
+        </div>
+    </div>
+</form>
+{% endfor%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function()
+        {
+            $('#quantity').on('change', function(){
+                var quantity=$('#quantity').val();
+                var price=$('#price').val();
+                var total=parseInt(quantity)*parseInt(price);
+                $('#total').val(total);
+            })
+        })
+    </script>
+    <script>
+      datepicker.min = new Date().toISOString().split("T")[0];
+      // function setMinTime() {
+      //   var currentTime = new Date();
+      //   var currentHours = currentTime.getHours();
+      //   var currentMinutes = currentTime.getMinutes();
+      //    // Calculate two hours ahead
+      //    var maxHours = currentHours + 2;
+      //   if (maxHours > 23) {
+      //       maxHours -= 24; // Ensure maxHours doesn't exceed 23
+      //   }
+      //   var formattedCurrentTime = (currentHours < 10 ? '0' : '') + currentHours + ':' + (currentMinutes < 10 ? '0' : '') + currentMinutes;
+      //   var formattedMaxTime = (maxHours < 10 ? '0' : '') + maxHours + ':' + (currentMinutes < 10 ? '0' : '') + currentMinutes;
+
+      //   document.getElementById('timestart').min = formattedCurrentTime;
+      //   document.getElementById('timeend').max = formattedMaxTime;
+
+      //    // Compare the selected time with the current time
+      //    if (selectedTime < formattedCurrentTime) {
+      //       // If the selected time is in the past, reset the input value
+      //       document.getElementById('timestart').value = formattedCurrentTime;
+      //     }
+      //   }
+
+      //   // Call the function to set the minimum time on page load
+      //   setMinTime();
+
+      //   // Attach an event listener to the input for real-time updates
+      //   document.getElementById('timestart').addEventListener('input', setMinTime);
+
+    </script>
+{% endblock %}

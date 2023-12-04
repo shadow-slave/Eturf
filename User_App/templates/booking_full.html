@@ -1,0 +1,99 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block header %}
+<header id="header" style="background-color: black;">
+  <div class="container-fluid">
+
+    <div id="logo" class="pull-left">
+      <h1><a href="{% url 'uindex' %}" class="scrollto">UrTurf </a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="#intro"><img src="img/logo.png' %}" alt="" title="" /></a>-->
+    </div>
+
+    <nav id="nav-menu-container">
+      <ul class="nav-menu">
+        <li ><a href="{% url 'uindex' %}">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="{% url 'usearch' %}">Book Now</a></li>
+        <li class="menu-has-children"><a href="" class="sf-with-ul">Locations</a>
+          <ul style="display: none;">
+              {% for i in locations %}
+            <li><a href="{% url 'locationresult' id=i.loc %}">{{i.loc}}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+        <li class="menu"><a href="{% url 'contact' %}">Contact</a></li>
+        <li class="menu-has-children"><a href="" class="sf-with-ul">Account</a>
+          <ul style="display: none;">
+            {% if 'u_id' in request.session %}
+              <li><a href="">Hi, {{request.session.u_name}}</a></li>
+              <li><a href="{% url 'bookinghistory' %}">Booking History</a></li>
+            <li><a href="{% url 'ulogout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'ulogin' %}">Login</a></li>
+            <li><a href="{% url 'uregister' %}">Register</a></li>
+            {% endif %}
+          </ul>
+        </li>
+      </ul>
+    </nav><!-- #nav-menu-container -->
+  </div>
+</header><!-- #header -->
+{% endblock %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{% static 'singleendcss/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'singleendcss/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'singleendcss/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'singleendcss/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'singleendcss/magnific-popup.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'singleendcss/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'singleendcss/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'singleendcss/style.css' %}" type="text/css">
+    <style>
+    .icon-shape {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.icon-sm {
+    width: 2rem;
+    height: 2rem;
+    
+}
+    </style>
+</head>
+{% for i in data1 %}
+<div class="row justify-content-center" style="margin-top: 100px;">
+    <div class="col-lg-4">
+        <div class="checkout__order">
+            <div class="checkout__order__product">
+                <ul>
+                    <li>
+                        <span class="top__text">Sorry For The Inconvinence</span>
+                    </li>
+                    <li>
+                        <span class="top__text">Booking Full For That Period Of Time</span>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="checkout__order__total">
+                <ul>
+                    <li>Please Book Again For A Different Time</li>
+                </ul>
+            </div>
+            <a href="{% url 'booknow' id=i.id %}"><button type="submit" class="site-btn">Book Again</button></a>
+        </div>
+    </div>
+</div>
+{% endfor %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+{% endblock%}

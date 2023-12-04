@@ -1,0 +1,145 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block header %}
+  <header id="header" style="background-color: black;">
+    <div class="container-fluid">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="{% url 'uindex' %}" class="scrollto" style="font-size: 34px;font-weight: 700;letter-spacing: 3px;line-height: 1;
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">UrTurf </a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="{% url 'uindex' %}"><img src="img/logo.png' %}" alt="" title="" /></a>-->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li ><a href="{% url 'uindex' %}">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="{% url 'usearch' %}">Book Now</a></li>
+          <li class="menu-has-children"><a href="" class="sf-with-ul">Locations</a>
+            <ul style="display: none;">
+                {% for i in locations %}
+              <li><a href="{% url 'locationresult' id=i.loc %}">{{i.loc}}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+          <li class="menu-has-children"><a href="" class="sf-with-ul">Account</a>
+            <ul style="display: none;">
+              {% if 'u_id' in request.session %}
+              <li><a href="">Hi, {{request.session.u_name}}</a></li>
+              <li><a href="{% url 'bookinghistory' %}">Booking History</a></li>
+              <li><a href="{% url 'ulogout' %}">Logout</a></li>
+              {% else %}
+              <li><a href="{% url 'ulogin' %}">Login</a></li>
+              <li><a href="{% url 'uregister' %}">Register</a></li>
+              {% endif %}
+            </ul>
+          </li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+  {% endblock %}
+{% block content %}
+
+<head>
+	<title>Login V1</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{% static 'lrimages/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'lrvendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'lrfonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'lrvendor/animate/animate.css' %}">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="{% static 'lrvendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'lrvendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'lrcss/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'lrcss/main.css' %}">
+<!--===============================================================================================-->
+</head>
+<body>
+	{% block logincontent%}
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="{% static 'lrimages/img-1.png' %}" alt="IMG" style="margin-top: 50px;">
+				</div>
+
+				<form class="login100-form validate-form" action="{% url 'publicdata' %}" method="post">
+                    {% csrf_token %}
+					<span class="login100-form-title">
+						Member Login
+					</span>
+                    <p>{{msg}}</p>
+                    <div class="wrap-input100 validate-input" >
+                        <input class="input100" type="text" name="name" placeholder="Username">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" type="password" name="password" placeholder="Password">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" type="submit">
+							Login
+						</button>
+					</div>
+
+					<div class="text-center p-t-12">
+						<span class="txt1">
+							Forgot
+						</span>
+						<a class="txt2" href="#">
+							Username / Password?
+						</a>
+					</div>
+
+					<div class="text-center p-t-136">
+						<a class="txt2" href="{% url 'uregister' %}">
+							Create your Account
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	{% endblock %}
+	
+
+	
+<!--===============================================================================================-->	
+	<script src="{% static 'lrvendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'lrvendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'lrvendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'lrvendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'lrvendor/tilt/tilt.jquery.min.js' %}"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'lrjs/main.js' %}"></script>
+
+</body>
+{% endblock %}

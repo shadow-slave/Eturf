@@ -1,0 +1,122 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block header %}
+<header id="header" style="background-color: black;">
+  <div class="container-fluid">
+
+    <div id="logo" class="pull-left">
+      <h1><a href="{% url 'uindex' %}" class="scrollto">UrTurf </a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="#intro"><img src="img/logo.png' %}" alt="" title="" /></a>-->
+    </div>
+
+    <nav id="nav-menu-container">
+      <ul class="nav-menu">
+        <li ><a href="{% url 'uindex' %}">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="{% url 'usearch' %}">Book Now</a></li>
+        <li class="menu-has-children"><a href="" class="sf-with-ul">Locations</a>
+          <ul style="display: none;">
+              {% for i in locations %}
+            <li><a href="{% url 'locationresult' id=i.loc %}">{{i.loc}}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+        <li class="menu-active"><a href="{% url 'contact' %}">Contact</a></li>
+        <li class="menu-has-children"><a href="" class="sf-with-ul">Account</a>
+          <ul style="display: none;">
+            {% if 'u_id' in request.session %}
+              <li><a href="">Hi, {{request.session.u_name}}</a></li>
+              <li><a href="{% url 'bookinghistory' %}">Booking History</a></li>
+            <li><a href="{% url 'ulogout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'ulogin' %}">Login</a></li>
+            <li><a href="{% url 'uregister' %}">Register</a></li>
+            {% endif %}
+          </ul>
+        </li>
+      </ul>
+    </nav><!-- #nav-menu-container -->
+  </div>
+</header><!-- #header -->
+{% endblock %}
+
+{% block content %}
+
+
+    <!--==========================
+      Contact Section
+    ============================-->
+    <section id="contact" class="section-bg wow fadeInUp" style="margin-top: 50px;">
+        <div class="container">
+  
+          <div class="section-header">
+            <h3>Contact Us</h3>
+            <p>We value your feedback and are here to assist you. Whether you have questions about turf bookings, need support, or just want to connect, our team is ready to help.</p>
+          </div>
+  
+          <div class="row contact-info">
+  
+            <div class="col-md-4">
+              <div class="contact-address">
+                <i class="ion-ios-location-outline"></i>
+                <h3>Address</h3>
+                <address>Kottayam,Kerala</address>
+              </div>
+            </div>
+  
+            <div class="col-md-4">
+              <div class="contact-phone">
+                <i class="ion-ios-telephone-outline"></i>
+                <h3>Phone Number</h3>
+                <p><a href="tel:+155895548855">+91 9923485742</a></p>
+              </div>
+            </div>
+  
+            <div class="col-md-4">
+              <div class="contact-email">
+                <i class="ion-ios-email-outline"></i>
+                <h3>Email</h3>
+                <p><a href="mailto: urturf@gmail.com"> urturf@gmail.com</a></p>
+              </div>
+            </div>
+  
+          </div>
+  
+          <div class="form">
+            <div id="sendmessage">Your message has been sent. Thank you!</div>
+            <div id="errormessage">Invalid</div>
+            {% for msg in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+              <!-- <i class="ion-badge-success" ></i> -->{{msg}}
+              <!-- <button type="button" class="btn-Close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+            </div>
+            {% endfor %}
+            <form action="{% url 'regcontact' %}" method="post" role="form">
+              {% csrf_token %}
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input type="text" name="uname" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div class="validation"></div>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="email" class="form-control" name="uemail" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                  <div class="validation"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="usubject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 4 chars of subject" />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="umessage" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                <div class="validation"></div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+          </div>
+  
+        </div>
+      </section><!-- #contact -->
+
+{% endblock %}

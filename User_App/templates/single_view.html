@@ -1,0 +1,254 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block header %}
+  <header id="header" >
+    <div class="container-fluid">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="{% url 'uindex' %}" class="scrollto">UrTurf </a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#intro"><img src="img/logo.png' %}" alt="" title="" /></a>-->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li ><a href="{% url 'uindex' %}">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="{% url 'usearch' %}">Book Now</a></li>
+          <li class="menu-has-children"><a href="" class="sf-with-ul">Locations</a>
+            <ul style="display: none;">
+                {% for i in locations %}
+              <li><a href="{% url 'locationresult' id=i.loc %}">{{i.loc}}</a></li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+          <li class="menu-has-children"><a href="" class="sf-with-ul">Account</a>
+            <ul style="display: none;">
+              {% if 'u_id' in request.session %}
+              <li><a href="">Hi, {{request.session.u_name}}</a></li>
+              <li><a href="{% url 'bookinghistory' %}">Booking History</a></li>
+              <li><a href="{% url 'ulogout' %}">Logout</a></li>
+              {% else %}
+              <li><a href="{% url 'ulogin' %}">Login</a></li>
+              <li><a href="{% url 'uregister' %}">Register</a></li>
+              {% endif %}
+            </ul>
+          </li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+  {% endblock %}
+{% block content %}
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>pillloMart</title>
+    <link rel="icon" href="{% static 'singleimg/favicon.png' %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'singlecss/bootstrap.min.css' %}">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="{% static 'singlecss/animate.css' %}">
+    <!-- owl carousel CSS -->
+    <link rel="stylesheet" href="{% static 'singlecss/owl.carousel.min.css' %}">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="{% static 'singlecss/all.css' %}">
+    <!-- flaticon CSS -->
+    <link rel="stylesheet" href="{% static 'singlecss/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'singlecss/themify-icons.css' %}">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="{% static 'singlecss/magnific-popup.css' %}">
+    <!-- swiper CSS -->
+    <link rel="stylesheet" href="{% static 'singlecss/slick.css' %}">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="{% static 'singlecss/style.css' %}">
+        <!-- Css Styles -->
+        <link rel="stylesheet" href="{% static 'singleendcss/bootstrap.min.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'singleendcss/font-awesome.min.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'singleendcss/elegant-icons.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'singleendcss/jquery-ui.min.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'singleendcss/magnific-popup.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'singleendcss/owl.carousel.min.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'singleendcss/slicknav.min.css' %}" type="text/css">
+        <link rel="stylesheet" href="{% static 'singleendcss/style.css' %}" type="text/css">
+</head>
+
+<body>
+
+    <!-- breadcrumb part start-->
+    <section class="breadcrumb_part single_product_breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb part end-->
+
+  <!--================Single Product Area =================-->
+  <div class="product_image_area">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <section id="intro" >
+                <div class="intro-container" >
+                  <div id="introCarousel" class="carousel  slide carousel-fade" data-ride="carousel">
+            
+                    <ol class="carousel-indicators"></ol>
+            
+                    <div class="carousel-inner" role="listbox">
+                        {% for i in data %}
+                      <div class="carousel-item active" style="background-image: url({{i.timage1.url}});filter: brightness(300%);">
+                        <div class="carousel-container">
+                          <div class="carousel-content">
+                          </div>
+                        </div>
+                      </div>
+            
+                        <div class="carousel-item" style="background-image: url({{i.timage2.url}});filter: brightness(300%);">
+                        <div class="carousel-container">
+                          <div class="carousel-content">
+                          </div>
+                        </div>
+                      </div>
+            
+                      <div class="carousel-item" style="background-image: url({{i.timage3.url}});filter: brightness(300%);">
+                        <div class="carousel-container">
+                          <div class="carousel-content">
+                          </div>
+                        </div>
+                      </div>
+                        {% endfor %}
+                    </div>
+            
+                    <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
+                      <span class="carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+            
+                    <a class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
+                      <span class="carousel-control-next-icon ion-chevron-right" aria-hidden="true"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+            
+                  </div>
+                </div>
+              </section><!-- #intro -->
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
+            {% for i in data %}
+            <div class="product__details__text">
+                <h3 style="text-align: center;margin-top: 50px;">{{i.tname}}</h3>
+                <div class="product__details__button">
+                    <!-- <div class="quantity">
+                        <span>Quantity:</span>
+                        <div class="pro-qty">
+                            <input type="text" value="1">
+                        </div>
+                    </div> -->
+                  <div class="row justify-content-center">
+                    <button class="btn btn-success " style="position: absolute;"><a href="{% url 'booknow' id=i.id %}" style="text-decoration: none;color: aliceblue;">Book Now</a></button>
+                  </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="col-lg-12">
+            <div class="product__details__tab">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Address</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">Map</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    {% for i in data %}
+                    <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                        <h6>Manager Details </h6>
+                        <p><i class="ion-android-person"></i>  <i class="ion-android-arrow-dropright"></i>{{i.tmanagerid.mname}}</p>
+                        <p>
+                          <i class="ion-android-mail" ></i>  <i class="ion-android-arrow-dropright"></i> {{i.tmanagerid.memail}}</p>
+                        <p><i class="ion-ios-telephone"></i>  <i class="ion-android-arrow-dropright"></i> {{i.tmanagerid.mphone}}</p>
+                        <h6>Timings</h6>
+                        <p><i class="ion-ios-time"></i>  <i class="ion-android-arrow-dropright"></i>{{i.tstime}}-{{i.tetime}}</p>
+                        <h6>Features</h6>
+                        <p><i class="ion-ios-settings-strong"></i>  <i class="ion-android-arrow-dropright"></i>{{i.features}}</p>
+                    </div>
+                    <div class="tab-pane" id="tabs-2" role="tabpanel">
+                        <h6>Location</h6>
+                        <p><i class="ion-ios-location"></i>{{i.tloc}}</p>
+                        <h6>Address</h6>
+                        <p><i class="ion-android-map"></i>{{i.tarea}}</p>
+                    </div>
+                    <div class="tab-pane" id="tabs-3" role="tabpanel">
+                        <h6>Map</h6>
+                        <p>
+                            <div class="google-map">
+                                <iframe src="{{i.taddress}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                              </div>
+                        </p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
+  <!--================End Single Product Area =================-->
+ 
+
+    <!-- jquery plugins here-->
+    <script src="{% static 'singlejs/jquery-1.12.1.min.js' %}"></script>
+    <!-- popper js -->
+    <script src="{% static 'singlejs/popper.min.js' %}"></script>
+    <!-- bootstrap js -->
+    <script src="{% static 'singlejs/bootstrap.min.js' %}"></script>
+    <!-- easing js -->
+    <script src="{% static 'singlejs/jquery.magnific-popup.js' %}"></script>
+    <!-- swiper js -->
+    <script src="{% static 'singlejs/swiper.min.js' %}"></script>
+    <!-- swiper js -->
+    <script src="{% static 'singlejs/mixitup.min.js' %}"></script>
+    <!-- particles js -->
+    <script src="{% static 'singlejs/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'singlejs/jquery.nice-select.min.js' %}"></script>
+    <!-- slick js -->
+    <script src="{% static 'singlejs/slick.min.js' %}"></script>
+    <script src="{% static 'singlejs/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'singlejs/waypoints.min.js' %}"></script>
+    <script src="{% static 'singlejs/contact.js' %}"></script>
+    <script src="{% static 'singlejs/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'singlejs/jquery.form.js' %}"></script>
+    <script src="{% static 'singlejs/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'singlejs/mail-script.js' %}"></script>
+    <!-- custom js -->
+    <script src="{% static 'singlejs/custom.js' %}"></script>
+
+    
+    <!-- Js END Plugins -->
+    <script src="{% static 'singleendjs/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'singleendjs/bootstrap.min.js' %}"></script>
+    <script src="{% static 'singleendjs/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'singleendjs/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'singleendjs/mixitup.min.js' %}"></script>
+    <script src="{% static 'singleendjs/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'singleendjs/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'singleendjs/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'singleendjs/jquery.nicescroll.min.js' %}"></script>
+    <script src="{% static 'singleendjs/main.js' %}"></script>
+</body>
+
+{% endblock %}

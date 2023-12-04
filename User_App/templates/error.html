@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+{% block header %}
+<header id="header" style="background-color: black;">
+  <div class="container-fluid">
+
+    <div id="logo" class="pull-left">
+      <h1><a href="{% url 'uindex' %}" class="scrollto">UrTurf </a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="#intro"><img src="img/logo.png' %}" alt="" title="" /></a>-->
+    </div>
+
+    <nav id="nav-menu-container">
+      <ul class="nav-menu">
+        <li ><a href="{% url 'uindex' %}">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="{% url 'usearch' %}">Book Now</a></li>
+        <li class="menu-has-children"><a href="" class="sf-with-ul">Locations</a>
+          <ul style="display: none;">
+              {% for i in locations %}
+            <li><a href="{% url 'locationresult' id=i.loc %}">{{i.loc}}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+        <li class="menu"><a href="{% url 'contact' %}">Contact</a></li>
+        <li class="menu-has-children"><a href="" class="sf-with-ul">Account</a>
+          <ul style="display: none;">
+            {% if 'u_id' in request.session %}
+              <li><a href="">Hi, {{request.session.u_name}}</a></li>
+              <li><a href="{% url 'bookinghistory' %}">Booking History</a></li>
+            <li><a href="{% url 'ulogout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'ulogin' %}">Login</a></li>
+            <li><a href="{% url 'uregister' %}">Register</a></li>
+            {% endif %}
+          </ul>
+        </li>
+      </ul>
+    </nav><!-- #nav-menu-container -->
+  </div>
+</header><!-- #header -->
+{% endblock %}
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<h1 style="color: black;font-size: 70px;font-weight: 600 ;">No Booking History</h1>
+{% endblock%}

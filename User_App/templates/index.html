@@ -1,0 +1,592 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title> UrTurf | Revolutionizing Playtime </title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="{% static 'himg/apple-touch-icon1.png' %}" rel="icon">
+  <link href="{% static 'himg/apple-touch-icon1.png' %}" rel="apple-touch-icon1">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="{% static 'hlib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="{% static 'hlib/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'hlib/animate/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'hlib/ionicons/css/ionicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'hlib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+  <link href="{% static 'hlib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+
+  <link href="{% static 'searchcss/main.css' %}" rel="stylesheet" />
+
+  <!-- Main Stylesheet File -->
+  <link href="{% static 'hcss/style.css' %}" rel="stylesheet">
+  
+
+  <!-- =======================================================
+    Theme Name: BizPage
+    Theme URL: https://bootstrapmade.com/bizpage-bootstrap-business-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+  ======================================================= -->
+</head>
+
+<body>
+
+  <!--==========================
+    Header
+  ============================-->
+  {% block header %}
+  <header id="header">
+    <div class="container-fluid">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="{% url 'uindex' %}" class="scrollto">UrTurf </a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="{% url 'uindex' %}"><img src="img/logo.png' %}" alt="" title="" /></a>-->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="{% url 'uindex' %}">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="{% url 'usearch' %}">Book Now</a></li>
+          <li><a href="#portfolio">Locations</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li class="menu-has-children"><a href="" class="sf-with-ul">Account</a>
+            <ul style="display: none;">
+              {% if 'u_id' in request.session %}
+              <li><a href="">Hi, {{request.session.u_name}}</a></li>
+              <li><a href="{% url 'bookinghistory' %}">Booking History</a></li>
+              <li><a href="{% url 'ulogout' %}">Logout</a></li>
+              {% else %}
+              <li><a href="{% url 'ulogin' %}">Login</a></li>
+              <li><a href="{% url 'uregister' %}">Register</a></li>
+              {% endif %}
+            </ul>
+          </li>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+  {% endblock %}
+  {% block content %}
+  <!--==========================
+    Intro Section
+  ============================-->
+  <section id="intro">
+    <div class="intro-container">
+      <div id="introCarousel" class="carousel  slide carousel-fade" data-ride="carousel">
+
+        <ol class="carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <div class="carousel-item active" style="background-image: url('{% static 'himg/intro-carousel/1.jpg' %}');">
+            <div class="carousel-container">
+              <div class="carousel-content" style="margin-top: 250px;">
+                <h2>Unlock Your Game, Anytime, Anywhere!</h2>
+                <p>Welcome to UrTurf, where your passion for sports meets the ease of online booking. Elevate your playtime with our seamless platform designed for sports enthusiasts like you.</p>
+                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item" style="background-image: url('{% static 'himg/intro-carousel/2.jpg' %}');">
+            <div class="carousel-container">
+              <div class="carousel-content" style="margin-top: 250px;">
+                <h2>Unlock Your Game, Anytime, Anywhere!</h2>
+                <p>Welcome to UrTurf, where your passion for sports meets the ease of online booking. Elevate your playtime with our seamless platform designed for sports enthusiasts like you.</p>
+                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item" style="background-image: url('{% static 'himg/intro-carousel/3.jpg' %}');">
+            <div class="carousel-container">
+              <div class="carousel-content" style="margin-top: 250px;">
+                <h2>Unlock Your Game, Anytime, Anywhere!</h2>
+                <p>Welcome to UrTurf, where your passion for sports meets the ease of online booking. Elevate your playtime with our seamless platform designed for sports enthusiasts like you.</p>
+                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item" style="background-image: url('{% static 'himg/intro-carousel/4.jpg' %}');">
+            <div class="carousel-container">
+              <div class="carousel-content" style="margin-top: 250px;">
+                <h2>Unlock Your Game, Anytime, Anywhere!</h2>
+                <p>Welcome to UrTurf, where your passion for sports meets the ease of online booking. Elevate your playtime with our seamless platform designed for sports enthusiasts like you.</p>
+                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item" style="background-image: url('{% static 'himg/intro-carousel/5.jpg' %}');">
+            <div class="carousel-container">
+              <div class="carousel-content" style="margin-top: 250px;">
+                <h2>Unlock Your Game, Anytime, Anywhere!</h2>
+                 <p>Welcome to UrTurf, where your passion for sports meets the ease of online booking. Elevate your playtime with our seamless platform designed for sports enthusiasts like you.</p>
+                <a href="#featured-services" class="btn-get-started scrollto">Get Started</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+
+        <a class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon ion-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+
+      </div>
+    </div>
+  </section><!-- #intro -->
+
+  <main id="main">
+
+    <!--==========================
+      Featured Services Section
+    ============================-->
+    <section id="featured-services">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-4 box">
+            <i class="ion-ios-bookmarks-outline"></i>
+            <h4 class="title"><a href="">Diverse Sports Options</a></h4>
+            <p class="description">Soccer, basketball, tennis, and more.</p>
+            <p class="description">Tailor your booking to your preferred sport.</p>
+          </div>
+
+          <div class="col-lg-4 box box-bg">
+            <i class="ion-ios-stopwatch-outline"></i>
+            <h4 class="title"><a href="">Instant Booking</a></h4>
+            <p class="description">Book your favorite turf in just a few clicks.
+             <br> Real-time availability updates for hassle-free planning.</p>
+          </div>
+
+          <div class="col-lg-4 box">
+            <i class="ion-ios-heart-outline"></i>
+            <h4 class="title"><a href="">User-Friendly Interface</a></h4>
+            <p class="description">
+              Intuitive design for a smooth booking experience.<br>
+              No more phone calls or on-site hassles.</p>
+          </div>
+
+        </div>
+      </div>
+    </section><!-- #featured-services -->
+
+    <!--==========================
+      About Us Section
+    ============================-->
+    <section id="about">
+      <div class="container">
+
+        <header class="section-header">
+          <h3>About Us</h3>
+          <p>At UrTurf, we believe in transforming the way you experience sports and outdoor activities. Our platform is more than just a turf booking website; it's a commitment to providing sports enthusiasts with seamless, enjoyable, and hassle-free playtime.</p>
+        </header>
+
+        <div class="row about-cols">
+
+          <div class="col-md-4 wow fadeInUp">
+            <div class="about-col" style="height: 500px;">
+              <div class="img">
+                <img src="{% static 'himg/about-mission1.jpg' %}" alt="" class="img-fluid">
+                <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
+              </div>
+              <h2 class="title"><a href="#">Our Mission</a></h2>
+              <p>
+                At the core of UrTurf is a simple yet powerful mission - to make booking sports turfs as easy as scoring a goal. We understand the passion that drives individuals and teams to the field, and we are dedicated to enhancing that experience through convenient, online turf reservations.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="about-col" style="height: 500px;">
+              <div class="img">
+                <img src="{% static 'himg/about-plan1.jpg' %}" alt="" class="img-fluid">
+                <div class="icon"><i class="ion-ios-list-outline"></i></div>
+              </div>
+              <h2 class="title"><a href="#">Our Commitment</a></h2>
+              <p>
+                UrTurf is committed to providing a platform that goes beyond expectations. We strive to deliver a seamless and enjoyable experience from the moment you land on our website to the final whistle on the turf.
+              </p>
+            </div>
+          </div>
+
+          <div class="col-md-4 wow fadeInUp" data-wow-delay="0.2s">
+            <div class="about-col" style="height: 500px;">
+              <div class="img">
+                <img src="{% static 'himg/about-vision1.jpg' %}" alt="" class="img-fluid">
+                <div class="icon"><i class="ion-ios-eye-outline"></i></div>
+              </div>
+              <h2 class="title"><a href="#">Our Vision</a></h2>
+              <p>
+                To be the leading platform that empowers individuals and teams to effortlessly access and enjoy the perfect turf for their game, fostering a global community connected by the love of sports.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- #about -->
+    
+    <!--==========================
+      Facts Section
+    ============================-->
+    <section id="facts"  class="wow fadeIn">
+      <div class="container">
+
+        <header class="section-header">
+          <h3>Facts</h3>
+          <p>At UrTurf, we believe in transparency and sharing our journey with you. Here are some key facts and counts that highlight our commitment to providing you with the best sports turf booking experience</p>
+        </header>
+
+        <div class="row counters">
+
+  				<div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">{{countuser}}</span>
+            <p>Happy Users</p>
+  				</div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">{{countbooking}}</span>
+            <p>Real-Time Bookings</p>
+  				</div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">{{countloc}}</span>
+            <p>Locations</p>
+  				</div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">{{countturf}}</span>
+            <p>Turfs</p>
+  				</div>
+
+  			</div>
+
+        <div class="facts-img">
+          <img src="{% static 'himg/facts-img1.jpg' %}" alt="" class="img-fluid">
+        </div>
+
+      </div>
+    </section><!-- #facts -->
+
+    <!--==========================
+      Portfolio Section
+    ============================-->
+    <section id="portfolio"  class="section-bg" >
+      <div class="container">
+
+        <header class="section-header">
+          <h3 class="section-title">Our Locations</h3>
+        </header>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container">
+          {% for i in locations %}
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
+            <div class="portfolio-wrap">
+              <figure>
+                <img src="{{i.locimage.url}}" class="img-fluid" alt="">
+                <a href="{{i.locimage.url}}" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="{% url 'locationresult' id=i.loc %}" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
+              </figure>
+
+              <div class="portfolio-info">
+                <h4><a href="#">{{i.loc}}</a></h4>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section><!-- #portfolio -->
+
+    <!--==========================
+      Clients Section
+    ============================-->
+    <section id="clients" class="wow fadeInUp">
+      <div class="container">
+
+        <header class="section-header">
+          <h3>Our Clients</h3>
+        </header>
+
+        <div class="owl-carousel clients-carousel">
+          <img src="{% static 'himg/clients/client-1.png' %}" alt="">
+          <img src="{% static 'himg/clients/client-2.png' %}" alt="">
+          <img src="{% static 'himg/clients/client-3.png' %}" alt="">
+          <img src="{% static 'himg/clients/client-4.png' %}" alt="">
+          <img src="{% static 'himg/clients/client-5.png' %}" alt="">
+          <img src="{% static 'himg/clients/client-6.png' %}" alt="">
+          <img src="{% static 'himg/clients/client-7.png' %}" alt="">
+          <img src="{% static 'himg/clients/client-8.png' %}" alt="">
+        </div>
+
+      </div>
+    </section><!-- #clients -->
+
+    <!--==========================
+      Clients Section
+    ============================-->
+    <section id="testimonials" class="section-bg wow fadeInUp">
+      <div class="container">
+
+        <header class="section-header">
+          <h3>Testimonials</h3>
+        </header>
+
+        <div class="owl-carousel testimonials-carousel">
+
+          <div class="testimonial-item">
+            <img src="{% static 'himg/testimonial-11.jpg' %}" class="testimonial-img" style="border-radius: 50px;" alt="">
+            <h3>Alex H. </h3>
+            <h4>Soccer Enthusiast</h4>
+            <p>
+              <img src="{% static 'himg/quote-sign-left.png' %}" class="quote-sign-left" alt="">
+              I've tried many turf booking platforms, and UrTurf stands out for its diverse sports options and seamless booking process. The real-time availability feature is a game-changer, making planning our basketball games a breeze.
+              <img src="{% static 'himg/quote-sign-right.png' %}" class="quote-sign-right" alt="">
+            </p>
+          </div>
+
+          <div class="testimonial-item">
+            <img src="{% static 'himg/testimonial-22.jpg' %}" class="testimonial-img" style="border-radius: 50px;"  alt="">
+            <h3>Emily L.</h3>
+            <h4>Fitness Enthusiast</h4>
+            <p>
+              <img src="{% static 'himg/quote-sign-left.png' %}" class="quote-sign-left" alt="">
+            I love being part of the UrTurf community! The platform not only makes booking turfs easy, but it also connects me with fellow sports enthusiasts. It's more than just a booking site; it's a hub for like-minded individuals who share a passion for playtime.
+              <img src="{% static 'himg/quote-sign-right.png' %}" class="quote-sign-right" alt="">
+            </p>
+          </div>
+
+          <div class="testimonial-item">
+            <img src="{% static 'himg/testimonial-33.jpg' %}" class="testimonial-img" style="border-radius: 50px;" alt="">
+            <h3>Jessica M.</h3>
+            <h4>Soccer Player</h4>
+            <p>
+              <img src="{% static 'himg/quote-sign-left.png' %}" class="quote-sign-left" alt="">
+              UrTurf has transformed the way we organize our tennis matches. The variety of turfs available and the exclusive promotions keep us coming back. It's become our go-to platform for all our tennis reservations!
+              <img src="{% static 'himg/quote-sign-right.png' %}" class="quote-sign-right" alt="">
+            </p>
+          </div>
+
+          <div class="testimonial-item">
+            <img src="{% static 'himg/testimonial-44.jpg' %}" class="testimonial-img" style="border-radius: 50px;" alt="">
+            <h3>Ryan T</h3>.
+            <h4>Tennis Club Organizer</h4>
+            <p>
+              <img src="{% static 'himg/quote-sign-left.png' %}" class="quote-sign-left" alt="">
+              Kudos to the   team! Their commitment to user satisfaction is evident in every aspect of their platform. I appreciate the responsive customer support and the global community they've fostered. UrTurf has redefined the game.
+              <img src="{% static 'himg/quote-sign-right.png' %}" class="quote-sign-right" alt="">
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- #testimonials -->
+
+
+    <!--==========================
+      Contact Section
+    ============================-->
+    <section id="contact" class="section-bg wow fadeInUp">
+      <div class="container">
+
+        <div class="section-header">
+          <h3>Contact Us</h3>
+          <p>We value your feedback and are here to assist you. Whether you have questions about turf bookings, need support, or just want to connect, our team is ready to help.</p>
+        </div>
+
+        <div class="row contact-info">
+
+          <div class="col-md-4">
+            <div class="contact-address">
+              <i class="ion-ios-location-outline"></i>
+              <h3>Address</h3>
+              <address>Kottayam,Kerala</address>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="contact-phone">
+              <i class="ion-ios-telephone-outline"></i>
+              <h3>Phone Number</h3>
+              <p><a href="tel:+155895548855">+91 9923485742</a></p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="contact-email">
+              <i class="ion-ios-email-outline"></i>
+              <h3>Email</h3>
+              <p><a href="mailto: urturf@gmail.com"> urturf@gmail.com</a></p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form">
+          <div id="sendmessage">Your message has been sent. Thank you!</div>
+          <div id="errormessage">Invalid</div>
+          {% for msg in messages %}
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <!-- <i class="ion-badge-success" ></i> -->{{msg}}
+            <!-- <button type="button" class="btn-Close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+          </div>
+          {% endfor %}
+          <form action="{% url 'regcontact' %}" method="post" role="form">
+            {% csrf_token %}
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <input type="text" name="uname" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                <div class="validation"></div>
+              </div>
+              <div class="form-group col-md-6">
+                <input type="email" class="form-control" name="uemail" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                <div class="validation"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="usubject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 4 chars of subject" />
+              <div class="validation"></div>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="umessage" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+              <div class="validation"></div>
+            </div>
+            <div class="text-center"><button type="submit">Send Message</button></div>
+          </form>
+        </div>
+
+      </div>
+    </section><!-- #contact -->
+
+  </main>
+{% endblock %}
+  <!--==========================
+    Footer
+  ============================-->
+  <footer id="footer" >
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-info">
+            <h3 style="color: #fff5f5;;">UrTurf</h3>
+            <p>Welcome to UrTurf, where passion meets play, and booking a sports turf becomes an effortless experience. At TurfTime, our mission is to redefine the way you engage with sports and outdoor activities.</p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="ion-ios-arrow-right"></i> <a href="{% url 'uindex' %}">Home</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#about">About us</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="{% url 'usearch' %}">BookNow</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p style="color: #fff5f5;">
+                Kottayam <br>
+                Kerala <br>
+                India <br>
+              <strong style="color: #fff5f5;">Phone:</strong> +91 9920394873<br>
+              <strong style="color: #fff5f5;">Email:</strong> urturf@gmail.com<br>
+            </p>
+
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+            </div>
+
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-newsletter">
+            <h4>Our Newsletter</h4>
+            <p style="color: #fff5f5;">
+              At UrTurf, we're excited to bring you the latest updates and highlights from the world of turf bookings and sports. Our mission is to enhance your playtime experience, and we're thrilled to share what's happening in the UrTurf community.</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit"  value="Subscribe">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong>BizPage</strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!--
+          All the links in the footer should remain intact.
+          You can delete the links only if you purchased the pro version.
+          Licensing information: https://bootstrapmade.com/license/
+          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=BizPage
+        -->
+        Best <a href="https://bootstrapmade.com/">Bootstrap Templates</a> by BootstrapMade
+      </div>
+    </div>
+  </footer><!-- #footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+  <!-- JavaScript Libraries -->
+  <script src="{% static 'hlib/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'hlib/jquery/jquery-migrate.min.js' %}"></script>
+  <script src="{% static 'hlib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'hlib/easing/easing.min.js' %}"></script>
+  <script src="{% static 'hlib/superfish/hoverIntent.js' %}"></script>
+  <script src="{% static 'hlib/superfish/superfish.min.js' %}"></script>
+  <script src="{% static 'hlib/wow/wow.min.js' %}"></script>
+  <script src="{% static 'hlib/waypoints/waypoints.min.js' %}"></script>
+  <script src="{% static 'hlib/counterup/counterup.min.js' %}"></script>
+  <script src="{% static 'hlib/owlcarousel/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'hlib/isotope/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'hlib/lightbox/js/lightbox.min.js' %}"></script>
+  <script src="{% static 'hlib/touchSwipe/jquery.touchSwipe.min.js' %}"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="{% static 'hcontactform/contactform.js' %}"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="{% static 'hjs/main.js' %}"></script>
+
+  <script src="{% static 'searchjs/extention/choices.js' %}"></script>
+
+</body>
+</html>
