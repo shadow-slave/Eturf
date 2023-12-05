@@ -167,8 +167,33 @@ def regbooking(request,id):
             return render(request,'ulogin.html',{'msg':"Please Login To Book At UrTurf"})
     return redirect('uindex')
 
+# def paynow(request,id):
+#     product = turf_dbs.objects.get(id=id)
+#             session = stripe.checkout.Session.create(
+#             payment_method_types = ['card'],
+#             line_items=[{
+#                 'price_data':{
+#                     'currency': 'inr',
+#                     'product_data':{
+#                         'name': product.tname,
+#                     },
+#                     'unit_amount':int(btotal)*100,
+                   
+#                 },
+#                 'quantity':1,
+#             }],
+#             mode='payment',
+#             success_url = "http://127.0.0.1:8000/pay_success?session_id={CHECKOUT_SESSION_ID}",
+#             cancel_url = "http://127.0.0.1:8000/pay_cancel",
+#             # client_reference_id=product_id,
+#             )
+#             return redirect(session.url, code=303)
+            
+            # return redirect('bookinghistory')
+
 def pay_success(request):
     id=request.session.get('u_tid')
+    TURFID=turf_dbs.objects.get(id=id)
     bookingdate=request.session.get('u_bookingdate')
     mid=request.session.get('u_mid')
     bstime=request.session.get('u_bstime')
@@ -178,8 +203,8 @@ def pay_success(request):
     # plan_id = session.client_reference_id
     u_id = request.session.get('u_id')
     if Signup.objects.filter(id=u_id).exists():
-        data=BookTurf(userid=Signup.objects.get(id=u_id),turfid=turf_dbs.objects.get(id=id),mid=Manager_Signup.objects.get(id=mid),bookingdate=bookingdate,bstime=bstime,betime=betime,duration=duration,btotal=btotal)
-        data.save()
+        BookTurf.objects.create(userid=Signup.objects.get(id=u_id),turfid=TURFID,mid=Manager_Signup.objects.get(id=mid),bookingdate=bookingdate,bstime=bstime,betime=betime,duration=duration,btotal=btotal)
+        
         del request.session['u_mid']
         del request.session['u_tid']
         del request.session['u_bookingdate']

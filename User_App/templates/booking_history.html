@@ -102,7 +102,7 @@
                             <span class="top__text__right">₹{{i.btotal}}</span>
                         </li>
                         <li ><span class="top__text">Status</span> 
-                            <span class="top__text__right">{% if i.status == 1 %}<span class="text-success"> Booking Success </span>{% elif i.status == 2 %}<span class="text-danger"> Booking Failed </span> {% else %}<span class="text" style="color: rgb(214, 214, 96);">Booking Pending </span>{% endif %}</span>
+                            <span class="top__text__right">{% if i.status == 1 %}<span class="text-success"><a href=""><button class="btn btn-success">Pay Now </button></a> </span>{% elif i.status == 2 %}<span class="text-danger"> Booking Failed </span> {% else %}<span class="text" style="color: rgb(214, 214, 96);">Booking Pending </span>{% endif %}</span>
                         </li>
                     </ul>
                 </div>
