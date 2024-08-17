@@ -2,6 +2,15 @@
 
 Eturf is a cutting-edge web platform designed to simplify the process of booking turf locations. Users can log in, search for available turf slots, and make reservations with ease. The platform aims to reduce booking errors and enhance user satisfaction.
 
+## Screenshots
+
+<img src="https://github.com/user-attachments/assets/75e65bef-259a-4bda-a6d6-b8daf7028dd2" alt="home" width="500"/>
+<img src="https://github.com/user-attachments/assets/134e5722-be51-47b9-aefe-08e1d0580028" alt="items" width="500"/>
+<img src="https://github.com/user-attachments/assets/acd8f099-61b1-46d6-b4c1-343ee8731b87" alt="searchf" width="500"/>
+<img src="https://github.com/user-attachments/assets/94b54fa4-2702-49c8-9943-56e672427e76" alt="loginf" width="500"/>
+
+
+
 ## Features
 
 - **User Authentication**: Secure login and registration system for users.
